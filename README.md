@@ -1,78 +1,61 @@
 # xSplit
 
-**xSplit** is a versatile and high-performance command-line tool that efficiently splits large tabular data files into multiple segments. By targeting a specific column, users can create uniform splits that keep sequential rows with matching values in the same file. Designed with bioinformatics applications in mind, xSplit handles massive datasets with ease and precision.
+**xSplit** is a versatile command-line tool engineered for rapid and controlled splitting of large tabular data files into multiple segments. By targeting a specific column, it groups adjacent rows with identical values, facilitating precise segmentation. Designed with a minimal memory footprint, xSplit is ideal for bioinformatics, big data applications, and parallel processing of extensive datasets.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Command-line Options](#command-line-options)
-- [Examples](#examples)
 - [Building from Source](#building-from-source)
-- [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## Features
 
-- **Dynamic Splitting**: Customize the number of output files and designate the common column index for controlled splitting.
-- **Efficient Processing**: Optimized for speed and low memory consumption, perfect for large-scale data processing.
-- **Cross-Platform Support**: Binaries available for Windows, Linux, and macOS.
-- **Custom Delimiters**: Works seamlessly with various delimiters, including tabs, commas, or any user-defined character.
-- **Header Preservation**: Retains the header row across all output files for consistent data structure.
-- **Error Handling**: Intuitive error messages and warnings to guide users.
+- **Dynamic Splitting**: Segment files based on a target column, ensuring uniform distribution.
+- **High Efficiency**: Optimized for speed with minimal memory usage, tailored for large-scale data.
+- **Flexible Delimiters**: Supports various delimiters, including tabs, commas, or user-defined characters.
+- **Cross-Platform**: Pre-compiled binaries available for Linux and macOS.
 
 ## Installation
 
-Pre-compiled binaries are available for various platforms on the [Releases](URL_TO_RELEASES_PAGE) page. Simply download the binary suitable for your operating system and place it in a directory included in your system's PATH.
+Choose the appropriate binary for your OS from the [Releases](https://github.com/pre-mRNA/xSplit/releases/tag/v1.0.0) page and add it to your PATH. Alternatively, build from source (instructions below).
 
 ## Usage
 
-Basic command structure:
+Invoke xSplit with:
 
 ```bash
 xSplit --splits NUMBER --prefix PREFIX --column INDEX [OPTIONS]
 ```
 
-### Command-line Options
+Options:
 
-- `-n`, `--splits NUMBER`: Number of output files to create (required).
-- `-p`, `--prefix PREFIX`: Prefix for naming the output files (required).
-- `-c`, `--column INDEX`: Common column index (1-based) to guide the split (required).
-- `-d`, `--delimiter DELIMITER`: Delimiter for splitting columns (default: tab).
+- `-n`, `--splits`: Define output files (required).
+- `-p`, `--prefix`: Name output files (required).
+- `-c`, `--column`: Select common column index (1-based, required).
+- `-d`, `--delimiter`: Specify delimiter (default: tab).
 
-## Examples
+Example:
 
-Split a file into 4 parts based on the 3rd column:
-
-```bash
-cat input.tsv | xSplit --splits 4 --prefix ./output --column 3
-```
-
-Using a comma as a delimiter:
+Split a file by the 3rd column into 4 segments:
 
 ```bash
-xSplit --splits 5 --prefix ./output --column 2 --delimiter ","
+cat input.tsv | xSplit -n 4 -p ./output -c 3
 ```
 
 ## Building from Source
 
-If you prefer to build from source, you'll need Rust and Cargo installed:
-
 1. Clone the repository: `git clone URL_TO_REPOSITORY`
-2. Navigate to the project directory: `cd xSplit`
-3. Build the project: `cargo build --release`
-4. The binary will be available in `target/release`
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE.md](URL_TO_LICENSE_FILE) file for complete details.
+2. Navigate to the directory: `cd xSplit`
+3. Compile: `cargo build --release`
+4. Find the binary in `target/release`
 
 ## Contact
 
 - **Author**: AJ Sethi
 - **Email**: aditya.sethi@anu.edu.au
+- **License**: [MIT](https://github.com/pre-mRNA/xSplit/blob/main/LICENSE)
 
-For support, questions, or collaboration, feel free to reach out.
+_xSplit offers a specialized solution for segmenting large tabular data, maintaining the integrity of related rows. Its efficiency and adaptability make it a valuable tool for researchers, data scientists, and professionals handling vast datasets._
 
